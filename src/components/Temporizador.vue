@@ -2,30 +2,26 @@
         <div
             class="is-flex is-align-items-center is-justify-content-space-between"
         >
-        <Cronometro :tempoEmSegundos="tempoEmSegundos" />
-            <button class="button" @click="iniciar" :disabled="cronometroRodando">
-              <span class="icon">
-                <img src="../images/play.svg" alt="">
-              </span>
-              <span>Play</span>
-            </button>
-            <button class="button" @click="finalizar" :disabled="!cronometroRodando">
-              <span class="icon">
-                <img src="../images/pause.svg" alt="">
-              </span>
-              <span>Stop</span>
-            </button>
-          </div>
+          <Cronometro :tempoEmSegundos="tempoEmSegundos" />
+          <BotoesCronometro 
+          @iniciar="iniciar"
+          @finalizar="finalizar"
+          :cronometroRodando="cronometroRodando"
+          />
+        </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
 import Cronometro from "./Cronometro.vue";
+import BotoesCronometro from "./BotoesCronometro.vue";
 
 export default defineComponent({
   name: "Formulario-vue",
+  emits: ['temporizadorFinalizado'],
   components: {
-      Cronometro
+      Cronometro,
+      BotoesCronometro
   },
   data () {
     return {
@@ -51,6 +47,8 @@ export default defineComponent({
     finalizar () {
         this.cronometroRodando = false
       clearInterval(this.cronometro)
+      this.$emit('temporizadorFinalizado', this.tempoEmSegundos) //Primeiro parametro é o nome do evento, o segundo é o dado que será enviado.
+      this.tempoEmSegundos = 0
     },
   }
 });
