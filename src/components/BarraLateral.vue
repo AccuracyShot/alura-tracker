@@ -8,7 +8,7 @@
           {{ textoBotao }}
         </button>
       </div>
-      <nav class="panel mt-5">
+      <nav class="panel is-info mt-5">
         <ul>
           <li>
             <RouterLink class="link" to="/">Tarefas</RouterLink>

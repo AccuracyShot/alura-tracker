@@ -30,8 +30,8 @@
 </template>
 
 <script lang="ts">
-import IProjeto from '@/interfaces/IProjeto';
-import { defineComponent } from 'vue';
+import { computed, defineComponent } from 'vue';
+import { useStore } from '@/store'; 
 
 export default defineComponent({
     name: 'Projetos-vue',
@@ -40,19 +40,21 @@ export default defineComponent({
     data () {
         return {
             nomeDoProjeto: '',
-            projetos: [] as IProjeto[],
         }
     },
     methods: {
         salvar () {
-            const projeto: IProjeto = {
-                id: new Date().toISOString(),
-                nome: this.nomeDoProjeto,
-            }
-            this.projetos.push(projeto);
+            this.store.commit('ADICIONAR_PROJETO', this.nomeDoProjeto);
             this.nomeDoProjeto = '';
         },
 
+    },
+    setup() {
+        const store = useStore();
+        return {
+            store,
+            projetos: computed(() => store.state.projetos),
+        }
     }
 });
 
