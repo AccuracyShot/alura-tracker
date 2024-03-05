@@ -3,9 +3,21 @@
       <h1>
         <img src="../assets/logo.png" alt="">  
       </h1>
-      <button class="button" @click="alterarTema">
-        {{ textoBotao }}
-      </button>
+      <div>
+        <button class="button" @click="alterarTema">
+          {{ textoBotao }}
+        </button>
+      </div>
+      <nav class="panel mt-5">
+        <ul>
+          <li>
+            <RouterLink class="link" to="/">Tarefas</RouterLink>
+          </li>
+          <li>
+            <RouterLink class="link" to="/projetos">Projetos</RouterLink>
+          </li>
+        </ul>
+      </nav>
   </header>
 </template>
 
@@ -45,6 +57,23 @@ header {
   height: 100vh;
   text-align: center;
 }
+
+.panel li {
+  margin: 8px 0;
+}
+
+.link {
+  color: #fff;
+}
+
+.link:hover {
+  color: #f9c22e;
+}
+
+.link.router-link-active {
+  color: #f9c22e;
+}
+
 @media only screen and (max-width: 768px) {
   header {
     padding: 2.5rem;
