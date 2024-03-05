@@ -16,6 +16,9 @@
           <li>
             <RouterLink class="link" to="/projetos">Projetos</RouterLink>
           </li>
+          <li>
+            <RouterLink class="link" to="/contato">Contato</RouterLink>
+          </li>
         </ul>
       </nav>
   </header>
