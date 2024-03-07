@@ -1,28 +1,30 @@
 <template>
     <section class="projetos">
         <h1>Projetos</h1>
-        <form @submit.prevent="salvar">
-            <div class="field">
-                <label class="label" for="nome">Nome do projeto</label>
-                <div class="control">
-                    <input type="text" class="input" id="nome" placeholder="Nome do projeto" v-model="nomeDoProjeto">
-                </div>
-            </div>
-            <div class="field">
-                <div class="control">
-                    <button type="submit" class="button is-primary">Criar projeto</button>
-                </div>
-            </div>
-        </form>
+
+        <RouterLink to="/projetos/novo" class="button">
+                    <span class="icon is-small">
+                        <i class="fas fa-plus"></i>
+                    </span>
+                    <span>Novo Projeto</span>
+        </RouterLink>
 
         <table class="table is-fullwidth">
             <tr>
                 <th>ID</th>
                 <th>Nome</th>
+                <th>Ações</th>
             </tr>
             <tr v-for="projeto in projetos" :key="projeto.id">
                 <td>{{ projeto.id }}</td>
                 <td>{{ projeto.nome }}</td>
+                <td>
+                    <RouterLink :to="' /projetos/${projeto.id} '" class="button is-primary">Editar
+                        <span>
+                            <i></i>
+                        </span>
+                    </RouterLink>
+                </td>
             </tr>
         </table>
 
@@ -37,22 +39,9 @@ export default defineComponent({
     name: 'Projetos-vue',
     components: {
     },
-    data () {
-        return {
-            nomeDoProjeto: '',
-        }
-    },
-    methods: {
-        salvar () {
-            this.store.commit('ADICIONAR_PROJETO', this.nomeDoProjeto);
-            this.nomeDoProjeto = '';
-        },
-
-    },
     setup() {
         const store = useStore();
         return {
-            store,
             projetos: computed(() => store.state.projetos),
         }
     }
@@ -72,4 +61,5 @@ export default defineComponent({
     border-radius: 5px;
 }
 </style>
-
+        
+        

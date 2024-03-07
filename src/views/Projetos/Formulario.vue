@@ -1,0 +1,63 @@
+<template>
+    <section class="projetos">
+        <form @submit.prevent="salvar">
+            <div class="field">
+                <label class="label" for="nome">Projetos</label>
+                <div class="control">
+                    <input type="text" class="input" id="nome" placeholder="Nome do projeto" v-model="nomeDoProjeto">
+                </div>
+            </div>
+            <div class="field">
+                <div class="control">
+                    <button type="submit" class="button is-primary">Criar projeto</button>
+                </div>
+            </div>
+        </form>
+
+    </section>
+</template>
+
+<script lang="ts">
+import { defineComponent } from 'vue';
+import { useStore } from '@/store'; 
+
+export default defineComponent({
+    name: 'Formulario-vue',
+    components: {
+    },
+    data () {
+        return {
+            nomeDoProjeto: '',
+        }
+    },
+    methods: {
+        salvar () {
+            this.store.commit('ADICIONAR_PROJETO', this.nomeDoProjeto);
+            this.nomeDoProjeto = '';
+            this.$router.push('/projetos');
+        },
+
+    },
+    setup() {
+        const store = useStore();
+        return {
+            store,
+        }
+    }
+});
+
+</script>
+
+<style scoped>
+.projetos {
+    padding: 1.25rem;
+}
+
+.lista {
+    margin: 10px 0;
+    background-color: aqua;
+    padding: 1.25rem;
+    border-radius: 5px;
+}
+</style>
+
