@@ -1,65 +1,36 @@
 <template>
-    <section class="projetos">
-        <h1>Projetos</h1>
-
-        <RouterLink to="/projetos/novo" class="button">
-                    <span class="icon is-small">
-                        <i class="fas fa-plus"></i>
-                    </span>
-                    <span>Novo Projeto</span>
-        </RouterLink>
-
-        <table class="table is-fullwidth">
-            <tr>
-                <th>ID</th>
-                <th>Nome</th>
-                <th>Ações</th>
-            </tr>
-            <tr v-for="projeto in projetos" :key="projeto.id">
-                <td>{{ projeto.id }}</td>
-                <td>{{ projeto.nome }}</td>
-                <td>
-                    <RouterLink :to=" `/projetos/${projeto.id}` " class="button is-primary">Editar
-                        <span>
-                            <i></i>
-                        </span>
-                    </RouterLink>
-                </td>
-            </tr>
-        </table>
-
-    </section>
+    <div class="projetos">
+        <h1 class="title">Projetos</h1>
+        <RouterView></RouterView>
+    </div>
 </template>
 
 <script lang="ts">
-import { computed, defineComponent } from 'vue';
-import { useStore } from '@/store'; 
+import { defineComponent } from 'vue';
 
 export default defineComponent({
     name: 'Projetos-vue',
     components: {
     },
     setup() {
-        const store = useStore();
         return {
-            projetos: computed(() => store.state.projetos),
         }
     }
 });
-
 </script>
 
 <style scoped>
+
+.title {
+    margin-top: 1.25rem;
+    margin-bottom: 1.25rem;
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+}
+
 .projetos {
     padding: 1.25rem;
 }
-
-.lista {
-    margin: 10px 0;
-    background-color: aqua;
-    padding: 1.25rem;
-    border-radius: 5px;
-}
 </style>
-        
         
