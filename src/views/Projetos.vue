@@ -19,7 +19,7 @@
                 <td>{{ projeto.id }}</td>
                 <td>{{ projeto.nome }}</td>
                 <td>
-                    <RouterLink :to="' /projetos/${projeto.id} '" class="button is-primary">Editar
+                    <RouterLink :to=" `/projetos/${projeto.id}` " class="button is-primary">Editar
                         <span>
                             <i></i>
                         </span>

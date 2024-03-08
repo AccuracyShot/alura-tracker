@@ -8,16 +8,13 @@
           {{ textoBotao }}
         </button>
       </div>
-      <nav class="panel is-info mt-5">
+      <nav class="painel-links">
         <ul>
-          <li>
+          <li class="button is-info">
             <RouterLink class="link" to="/">Tarefas</RouterLink>
           </li>
-          <li>
+          <li class="button is-info">
             <RouterLink class="link" to="/projetos">Projetos</RouterLink>
-          </li>
-          <li>
-            <RouterLink class="link" to="/contato">Contato</RouterLink>
           </li>
         </ul>
       </nav>
@@ -61,8 +58,13 @@ header {
   text-align: center;
 }
 
-.panel li {
-  margin: 8px 0;
+.painel-links {
+  margin-top: 2rem;
+}
+
+.painel-links ul li {
+  display: block;
+  margin-bottom: 10px;
 }
 
 .link {
@@ -70,11 +72,11 @@ header {
 }
 
 .link:hover {
-  color: #f9c22e;
+  color: #4bfb00;
 }
 
 .link.router-link-active {
-  color: #f9c22e;
+  color: #4bfb00;
 }
 
 @media only screen and (max-width: 768px) {
