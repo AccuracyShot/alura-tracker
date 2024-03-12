@@ -19,6 +19,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import { useStore } from '@/store'; 
+import { ADICIONAR_PROJETO, EDITAR_PROJETO } from '@/store/tipo-mutacoes';
 
 export default defineComponent({
     name: 'Formulario-vue',
@@ -44,12 +45,12 @@ export default defineComponent({
     methods: {
         salvar () {
             if(this.id) {
-                this.store.commit('EDITAR_PROJETO', { 
+                this.store.commit(EDITAR_PROJETO, { 
                     id: this.id,
                     nome: this.nomeDoProjeto
                 });
             } else {          
-                this.store.commit('ADICIONAR_PROJETO', this.nomeDoProjeto);
+                this.store.commit(ADICIONAR_PROJETO, this.nomeDoProjeto);
             }
             this.nomeDoProjeto = '';
             this.$router.push('/projetos');
@@ -75,4 +76,5 @@ export default defineComponent({
     border-radius: 5px;
 }
 </style>
+import { EDITAR_PROJETO, ADICIONAR_PROJETO } from '@/store/tipo-mutacoes';
 
