@@ -1,7 +1,7 @@
 export enum TipoNotificacao {
-    SUCESSO = "sucesso",
-    FALHA = "falha",
-    ATENCAO = "atencao",
+  SUCESSO = "sucesso",
+  FALHA = "falha",
+  ATENCAO = "atencao",
 }
 
 export interface INotificacao {
