@@ -55,6 +55,7 @@ export const store = createStore<Estado>({
             },
             [CADASTRAR_PROJETO] (contexto, nomeDoProjeto: string) {
                 return http.post('/projetos', {
+                    id: new Date().toISOString(),
                     nome: nomeDoProjeto
                 })
             },
