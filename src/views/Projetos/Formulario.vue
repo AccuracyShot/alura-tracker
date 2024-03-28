@@ -19,9 +19,9 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import { useStore } from '@/store'; 
-import { ADICIONAR_PROJETO, EDITAR_PROJETO } from '@/store/tipo-mutacoes';
 import { TipoNotificacao } from '@/interfaces/INotificacao';
 import  useNotificador from '@/hooks/notificador';
+import { CADASTRAR_PROJETO, EDITAR_PROJETO } from '@/store/tipo-acoes';
 
 export default defineComponent({
     name: 'Formulario-vue',
@@ -47,17 +47,24 @@ export default defineComponent({
     methods: {
         salvar () {
             if(this.id) {
-                this.store.commit(EDITAR_PROJETO, { 
+                this.store.dispatch(EDITAR_PROJETO, { 
                     id: this.id,
                     nome: this.nomeDoProjeto
-                });
+                }).then(() => {
+                    this.lidarComSucesso();
+                })
             } else {          
-                this.store.commit(ADICIONAR_PROJETO, this.nomeDoProjeto);
+                this.store.dispatch(CADASTRAR_PROJETO, this.nomeDoProjeto)
+                    .then(() => {
+                        this.lidarComSucesso();
+                    })
             }
+        },
+        lidarComSucesso () {
             this.notificar(TipoNotificacao.SUCESSO, 'Projeto salvo', 'Projeto salvo com sucesso');
             this.nomeDoProjeto = '';
             this.$router.push('/projetos');
-        },
+        }
 
     },
     setup() {
