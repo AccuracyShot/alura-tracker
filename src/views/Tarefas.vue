@@ -21,7 +21,7 @@
                 </section>
                 <footer class="modal-card-foot">
                   <div class="buttons">
-                    <button class="button is-success">Salvar Alterações</button>
+                    <button @click="alterarTarefa" class="button is-success">Salvar Alterações</button>
                     <button @click="fecharModal" class="button">Cancelar</button>
                   </div>
                 </footer>
@@ -38,7 +38,7 @@
   import Formulario from '../components/Formulario.vue'
   import ListaTarefas from '../components/ListaTarefas.vue'
   import Box from '../components/Box.vue'
-  import { CADASTRAR_TAREFA, OBTER_TAREFAS } from '@/store/tipo-acoes';
+  import { ALTERAR_TAREFA, CADASTRAR_TAREFA, OBTER_TAREFAS } from '@/store/tipo-acoes';
 import { useStore } from '@/store';
 import ITarefa from '@/interfaces/ITarefa';
   
@@ -62,6 +62,10 @@ import ITarefa from '@/interfaces/ITarefa';
     methods: {
       salvarTarefa (tarefa: ITarefa): void {
         this.store.dispatch(CADASTRAR_TAREFA, tarefa)
+      },
+      alterarTarefa () {
+        this.store.dispatch(ALTERAR_TAREFA, this.tarefaSelecionada)
+        .then(() => this.fecharModal())
       },
       selecionarTarefa (tarefa: ITarefa): void {
         this.tarefaSelecionada = tarefa
