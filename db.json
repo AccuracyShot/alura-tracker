@@ -1,11 +1,11 @@
 {
   "projetos": [
     {
-      "id": 1,
+      "id": "1",
       "nome": "Alura Tracker 3.0"
     },
     {
-      "id": 2,
+      "id": "2",
       "nome": "ByteBank 2.0"
     },
     {
@@ -19,7 +19,7 @@
   ],
   "tarefas": [
     {
-      "id": 1,
+      "id": "1",
       "duracaoEmSegundos": 120,
       "descricao": "Configuração do ambiente",
       "projeto": {
@@ -30,7 +30,7 @@
     {
       "id": "1d13",
       "duracaoEmSegundos": 3,
-      "descricao": "Nova tarefa",
+      "descricao": "Nova tarefa 2",
       "projeto": {
         "id": "2024-03-29T01:53:48.125Z",
         "nome": "Alura Tracker 5.0"
