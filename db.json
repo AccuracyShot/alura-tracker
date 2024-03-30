@@ -35,6 +35,15 @@
         "id": "2024-03-29T01:53:48.125Z",
         "nome": "Alura Tracker 5.0"
       }
+    },
+    {
+      "id": "8eaf",
+      "duracaoEmSegundos": 3,
+      "descricao": "Nova tarefa editada",
+      "projeto": {
+        "id": "2024-03-30T01:09:05.127Z",
+        "nome": "Novo projeto"
+      }
     }
   ]
 }
