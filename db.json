@@ -10,11 +10,15 @@
     },
     {
       "id": "2024-03-29T01:53:48.125Z",
-      "nome": "Alura Tracker 5.0"
+      "nome": "Alura Tracker 6.0"
     },
     {
       "id": "2024-03-29T02:08:39.697Z",
       "nome": "Teste 2"
+    },
+    {
+      "id": "2024-03-30T01:55:34.177Z",
+      "nome": "Teste de action"
     }
   ],
   "tarefas": [
@@ -43,6 +47,33 @@
       "projeto": {
         "id": "2024-03-30T01:09:05.127Z",
         "nome": "Novo projeto"
+      }
+    },
+    {
+      "id": "f58f",
+      "duracaoEmSegundos": 3,
+      "descricao": "Tarefa com hook",
+      "projeto": {
+        "id": "2024-03-30T01:28:39.163Z",
+        "nome": "Projeto com hook atualizado"
+      }
+    },
+    {
+      "id": "d63e",
+      "duracaoEmSegundos": 1,
+      "descricao": "tarefa do mingau",
+      "projeto": {
+        "id": "2024-03-30T01:49:06.091Z",
+        "nome": "Projeto do mingau"
+      }
+    },
+    {
+      "id": "3992",
+      "duracaoEmSegundos": 3,
+      "descricao": "teste",
+      "projeto": {
+        "id": "2024-03-30T01:55:34.177Z",
+        "nome": "Teste de action"
       }
     }
   ]

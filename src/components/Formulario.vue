@@ -35,7 +35,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent } from "vue";
+import { computed, defineComponent, ref } from "vue";
 import Temporizador from './Temporizador.vue'
 import { useStore } from '@/store'; 
 import { NOTIFICAR } from '@/store/tipo-mutacoes';
@@ -47,38 +47,40 @@ export default defineComponent({
   components: {
     Temporizador
   },
-  data () {
-    return {
-      descricao: '',
-      idProjeto: ''
-    }
-  },
-  methods: {
-    salvarTarefa (tempoDecorrido: number) : void {
-      const projeto = this.projetos.find((p) => p.id == this.idProjeto); // primeiro, buscamos pelo projeto
-            if(!projeto) { // se o projeto não existe...
-                this.store.commit(NOTIFICAR, {
-                    titulo: 'Ops!',
-                    texto: "Selecione um projeto antes de finalizar a tarefa!",
-                    tipo: TipoNotificacao.FALHA,
-                }); // notificamos o usuário
-                return; // ao fazer return aqui, o restante do método salvarTarefa não será executado. chamamos essa técnica de early return :)
-            }
-            // se o projeto existe, seguimos normalmente...
-            this.$emit('aoSalvarTarefa', {
-                duracaoEmSegundos: tempoDecorrido,
-                descricao: this.descricao,
-                projeto: projeto
-            })
-            this.descricao = ''
-    }
-  },
-  setup() {
-        const store = useStore();
-        return {
-            projetos: computed(() => store.state.projeto.projetos),
-            store,
+  setup(props, { emit } ) {
+    const store = useStore();
+
+    const descricao = ref('')
+    const idProjeto = ref('')
+
+    const projetos = computed(() => store.state.projeto.projetos); // primeiro, buscamos pelo projeto
+
+    const salvarTarefa = (tempoDecorrido: number) : void => {
+        
+        if(!projetos.value) { // se o projeto não existe...
+            store.commit(NOTIFICAR, {
+                titulo: 'Ops!',
+                texto: "Selecione um projeto antes de finalizar a tarefa!",
+                tipo: TipoNotificacao.FALHA,
+            }); // notificamos o usuário
+            return; // ao fazer return aqui, o restante do método salvarTarefa não será executado. chamamos essa técnica de early return :)
         }
+        // se o projeto existe, seguimos normalmente...
+        emit('aoSalvarTarefa', {
+            duracaoEmSegundos: tempoDecorrido,
+            descricao: descricao.value,
+            projeto: projetos.value.find(proj => proj.id == idProjeto.value)
+        })
+        descricao.value = ''
+    }
+        
+
+      return {
+          descricao,
+          idProjeto,
+          projetos,
+          salvarTarefa
+      }
     }
 });
 </script>
