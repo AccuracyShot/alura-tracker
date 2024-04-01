@@ -41,7 +41,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, ref } from 'vue';
+import { computed, defineComponent, ref, watchEffect } from 'vue';
 import Formulario from '../components/Formulario.vue'
 import ListaTarefas from '../components/ListaTarefas.vue'
 import Box from '../components/Box.vue'
@@ -88,12 +88,18 @@ export default defineComponent({
 
     const filtrar = ref('')
 
-    const tarefas = computed(() =>
-     store.state.tarefas.filter(
-      (t) => !filtrar.value || t.descricao.includes(filtrar.value)))
+    // const tarefas = computed(() =>
+    //  store.state.tarefas.filter(
+    //   (t) => !filtrar.value || t.descricao.includes(filtrar.value)
+    //   )
+    // )
+
+    watchEffect(() => {
+      store.dispatch(OBTER_TAREFAS, filtrar.value)
+    })
 
     return {
-      tarefas,
+      tarefas: computed(() => store.state.tarefas),
       store,
       filtrar
     }
