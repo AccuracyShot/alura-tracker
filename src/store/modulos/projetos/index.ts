@@ -1,14 +1,12 @@
 import http from "@/http";
-import { INotificacao } from "@/interfaces/INotificacao";
-import IProjeto from "@/interfaces/IProjeto";
 import { Estado } from "@/store";
 import { OBTER_PROJETOS, CADASTRAR_PROJETO, REMOVER_PROJETO } from "@/store/tipo-acoes";
 import { ADICIONAR_PROJETO, EDITAR_PROJETO, EXCLUIR_PROJETO, DEFINIR_PROJETOS } from "@/store/tipo-mutacoes";
 import { Module } from "vuex";
+import IProjeto from "@/interfaces/IProjeto";
 
 export interface EstadoProjeto {
     projetos: IProjeto[];
-    notificacoes: INotificacao[];
 }
 
 export const projeto: Module<EstadoProjeto, Estado> = {

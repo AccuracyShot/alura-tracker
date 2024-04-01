@@ -3,7 +3,7 @@
   <div class="lista">
     <div class="field">
       <p class="control has-icons-left">
-        <input class="input" type="text" name="" id="" placeholder="Digite para filtrar" v-model="filtrar">
+        <input class="input" type="text" name="" id="" placeholder="Digite para filtrar" v-model="filtro">
         <span>
           <i class="fas fa-search"></i>
         </span>
@@ -86,22 +86,22 @@ export default defineComponent({
     store.dispatch(OBTER_TAREFAS)
     store.dispatch(OBTER_PROJETOS)
 
-    const filtrar = ref('')
+    const filtro = ref('')
 
     // const tarefas = computed(() =>
     //  store.state.tarefas.filter(
-    //   (t) => !filtrar.value || t.descricao.includes(filtrar.value)
+    //   (t) => !filtro.value || t.descricao.includes(filtro.value)
     //   )
     // )
 
     watchEffect(() => {
-      store.dispatch(OBTER_TAREFAS, filtrar.value)
+      store.dispatch(OBTER_TAREFAS, filtro.value)
     })
 
     return {
-      tarefas: computed(() => store.state.tarefas),
+      tarefas: computed(() => store.state.tarefa.tarefas),
       store,
-      filtrar
+      filtro
     }
   }
 });
