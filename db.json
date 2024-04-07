@@ -19,13 +19,17 @@
     {
       "id": "2024-03-30T01:55:34.177Z",
       "nome": "Teste de action"
+    },
+    {
+      "id": "2024-04-01T19:24:23.164Z",
+      "nome": "Cruzeiro 2024"
     }
   ],
   "tarefas": [
     {
       "id": "1",
       "duracaoEmSegundos": 120,
-      "descricao": "Configuração do ambiente",
+      "descricao": "Configuração do ambiente 3",
       "projeto": {
         "id": 1,
         "nome": "Alura Tracker 3.0"
@@ -65,15 +69,6 @@
       "projeto": {
         "id": "2024-03-30T01:49:06.091Z",
         "nome": "Projeto do mingau"
-      }
-    },
-    {
-      "id": "3992",
-      "duracaoEmSegundos": 3,
-      "descricao": "teste",
-      "projeto": {
-        "id": "2024-03-30T01:55:34.177Z",
-        "nome": "Teste de action"
       }
     },
     {

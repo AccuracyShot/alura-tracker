@@ -1,8 +1,8 @@
 import http from "@/http";
 import ITarefa from "@/interfaces/ITarefa";
 import { Estado } from "@/store";
-import { OBTER_TAREFAS, CADASTRAR_TAREFA, ALTERAR_TAREFA } from "@/store/tipo-acoes";
-import { DEFINIR_TAREFAS, ADICIONA_TAREFA, ALTERA_TAREFA } from "@/store/tipo-mutacoes";
+import { OBTER_TAREFAS, CADASTRAR_TAREFA, ALTERAR_TAREFA, REMOVER_TAREFA } from "@/store/tipo-acoes";
+import { DEFINIR_TAREFAS, ADICIONA_TAREFA, ALTERA_TAREFA, EXCLUI_TAREFA } from "@/store/tipo-mutacoes";
 import { Module } from "vuex";
 
 export interface EstadoTarefa {
@@ -23,6 +23,9 @@ export const tarefa: Module<EstadoTarefa, Estado> = {
         [ALTERA_TAREFA](state, tarefa: ITarefa) {
             const index = state.tarefas.findIndex(t => t.id === tarefa.id);
             state.tarefas[index] = tarefa;
+        },
+        [EXCLUI_TAREFA](state, id: number) {
+            state.tarefas = state.tarefas.filter(p => p.id !== id);
         }
     },
     actions: {
@@ -44,5 +47,9 @@ export const tarefa: Module<EstadoTarefa, Estado> = {
             return http.put(`/tarefas/${tarefa.id}`, tarefa)
             .then(() => commit(ALTERA_TAREFA, tarefa))
         },
+        [REMOVER_TAREFA] ({ commit }, id: string) {
+            http.delete(`/tarefas/${id}`)
+                .then(() => commit(EXCLUI_TAREFA, id))
+        }
     }
 }

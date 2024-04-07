@@ -9,6 +9,9 @@
           <Cronometro :tempoEmSegundos="tarefa.duracaoEmSegundos"/>
         </div>
       </div>
+      <div class="column is-1">
+          <button class="button is-danger ml-1" @click="excluir(tarefa.id)">Excluir</button>
+      </div>
     </Box>
   </template>
   
@@ -17,6 +20,9 @@
   import Cronometro from "./Cronometro.vue";
   import ITarefa from '../interfaces/ITarefa'
   import Box from './Box.vue'
+import { REMOVER_TAREFA } from "@/store/tipo-acoes";
+import { useStore } from '@/store'; 
+
   
   export default defineComponent({
     name: "ListaTarefas",
@@ -34,6 +40,15 @@
     methods: {
       tarefaClicada() {
         this.$emit('aoTarefaClicada', this.tarefa)
+      },
+      excluir(id: number) {
+            this.store.dispatch(REMOVER_TAREFA, id);
+      }
+    },
+    setup() {
+      const store = useStore();
+      return {
+        store
       }
     }
   });
@@ -41,6 +56,16 @@
 
 <style scoped>
 .clicavel {
+    cursor: pointer;
+}
+
+.botao-deletar {
+    background-color: red;
+    color: white;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    border-radius: 10%;
+    /* padding: 0.5rem; */
+    font-size: 1rem;
     cursor: pointer;
 }
 
